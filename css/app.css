@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2020/11/06, 11:25:11
+    Author     : Janus
+*/
+#app ul{
+    /*
+    ulタグをそのまま使うと●が表示されるのでそれを消す
+    */
+    list-style:none;
+}
+#app li > span.done{
+    /*
+    完了済みに線を引く
+    */
+    text-decoration: line-through;
+}
