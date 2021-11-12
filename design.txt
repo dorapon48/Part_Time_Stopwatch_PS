@@ -10,6 +10,7 @@
 ・基本設計
 google app scriptでWebアプリにする(なんか他の手段大変そうなんで)
 つもりだったけどなんかサーバが使えそうなんでそっちで
+php, mysql, html, javascript, css, vue, jquery
 
 index.html
 初期表示のhtml(今までの履歴と，計測スタートボタン)
