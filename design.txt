@@ -5,15 +5,28 @@
 ボタンを押してタイマースタート，もう一度押してストップ
 ストップした後に今さっきの計測についての説明が送れる
 場合によっては時間を変更することができるとよい
-記録したものをExcelファイルに書き出せる
+記録したものをExcelファイルに書き出せる(送ったexcelファイルに追加する形で)
 
 ・基本設計
 google app scriptでWebアプリにする(なんか他の手段大変そうなんで)
 つもりだったけどなんかサーバが使えそうなんでそっちで
-php, mysql, html, javascript, css, vue, jquery
+php, sql, html, javascript, css, vue, jquery
+excelの操作にはPhpspreadsheetを利用する
+
+database:table
+stock_times:ユーザの記録時間が入力される(スタート時間をストックする):*usr_id, start_time
+part_times:ユーザの始めた時間，終わった時間，補足を記録する:*user_id, start_time, end_time, others
+user:ユーザの情報を記録する:*user_id, 
+
+login.html
+ログインのためのページ
+メールログイン(gmailログインかfirebaseのlogin)
 
 index.html
-初期表示のhtml(今までの履歴と，計測スタートボタン)
+初期表示のhtml
+今までの履歴
+計測スタートボタン(クリックするとストップボタンに変わる)
+excel出力
 
 app.js
 htmlで使用する関数等のjavascriptファイル
@@ -35,4 +48,5 @@ delete.php
 update.php
 データベースの変更をする
 
-
+・詳細設計
+disign.xlsx
