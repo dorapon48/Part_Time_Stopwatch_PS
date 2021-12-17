@@ -21,11 +21,11 @@ stock_times:ユーザのスタートを押した時の時間が入力される(�
 part_times:ユーザの始めた時間，終わった時間，仕事内容，補足，job_id(識別に使う)を記録する:*user_id, start_time, end_time, job_info, others, job_id
 user:ユーザの情報を記録する:*user_id, name, pass
 
-login.html
+index.html
 ログインのためのページ
 メールログイン(gmailログインかfirebaseのlogin)
 
-index.html
+contents.html
 初期表示のhtml
 今までの履歴
 計測スタートボタン(クリックするとストップボタンに変わる)
