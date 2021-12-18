@@ -5,12 +5,39 @@
  */
 let list = [];
 
+/**
+ * ログインボタンを押したときに呼び出される．
+ * If(post_login){show_contents_page}を行う
+ */
 function login_button()
 {
     console.log(document.forms.info.user_id.value);
+    
 }
 
-
+/**
+ * login.phpにPOSTを投げる．
+ * ログインできるときはtrueを返す
+ * @param {object} info user_id, passwordを含むオブジェクト型
+ */
+async function post_login(info)
+{
+    await $.ajax(
+        {
+        type: 'POST',
+        url: 'login.php',
+        async: false,
+        data:{
+            user_id: info.user_id,
+            password: info.password
+        }
+    }).done(function (data) {
+        list = JSON.parse(data);
+        console.log(list);
+    }).fail(function () {
+        window.alert("サーバとの接続に失敗しました。");
+    });
+}
 
 
 

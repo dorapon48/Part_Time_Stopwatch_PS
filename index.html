@@ -8,21 +8,23 @@ and open the template in the editor.
     <head>
         <title>ログイン</title>
         <meta charset="UTF-8">
+        <!--
         <link rel="stylesheet" href="css/app.css">
-        <!--jquery追加忘れずに！-->
+        -->
+        <!--jquery-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
         <div id="login">
             <h1>ログインページ</h1>
-            <!--なんか構文エラーみたいな赤線出るけど気にしないで！！-->
-            <!--ちなみに，vueでリアルタイムにデータが反映されることを「データバインディング」といいます-->
             <form name="info">
                 <label>ユーザID</label>
-                <input type="text" name="user_id"><!--user_id-->
+                <!--user_id-->
+                <input type="text" name="user_id">
                 <br>
                 <label>パスワード</label>
-                <input type="password" name="password"><!--password-->
+                <!--password-->
+                <input type="password" name="password">
             </form>
             <button type="button" onclick="login_button()">ログイン</button>
         </div>
