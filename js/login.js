@@ -4,9 +4,20 @@
  * and open the template in the editor.
  */
 let list = [];
+
+function login_button()
+{
+    console.log(document.forms.info.user_id.value);
+}
+
+
+
+
+
+/*
 var app = new Vue({
     //html内のdivタグのidに紐づけ
-    el: '#app',
+    el: '#login',
     //使用するデータはココにまとめる
     data: {
         newItem: "",
@@ -14,8 +25,6 @@ var app = new Vue({
     },
     // ページ読み込み時にデータ取得と表示
     created: async function() {
-        await this.getItem();
-        await this.displayItem();
     },
     //関数とかはココにまとめる
     methods: {
@@ -157,3 +166,4 @@ var app = new Vue({
         }
     }
 });
+*/
