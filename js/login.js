@@ -24,6 +24,7 @@ function login_button(){
  * login.phpにPOSTを投げる．
  * ログインできるときはtrueを返す
  * @param {object} info user_id, passwordを含むオブジェクト型
+ * @returns bool
  */
 async function post_login(info){
     await $.ajax(
@@ -36,8 +37,16 @@ async function post_login(info){
             password: info.password
         }
     }).done(function (data) {
-        list = JSON.parse(data);
-        console.log(list);
+        let result = JSON.parse(data);
+        console.log(result);
+
+        if (result.login != 1){
+            window.alert(result.errormessage);
+            return false;
+        } else {
+            return true;
+        }
+
     }).fail(function () {
         window.alert("サーバとの接続に失敗しました。");
     });
