@@ -53,6 +53,7 @@ try
 } catch (PDOException $e) {
     // エラー処理
     $res_arrays["errormessage"] = "不明なエラー";
+    $res_arrays["errormessage"] = $e;
     echo json_encode($res_arrays);
     die();
 }

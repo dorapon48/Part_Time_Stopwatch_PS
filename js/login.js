@@ -5,9 +5,18 @@
  * ログインボタンを押したときに呼び出される．
  * If(post_login){show_contents_page}を行う
  */
-function login_button()
-{
-    console.log(document.forms.info.user_id.value);
+function login_button(){
+    let form = document.forms.info;
+    //表示
+    console.log(form.user_id.value);
+    console.log(create_hash(form.password.value));
+
+    //引数用のオブジェクト
+    let info = {user_id: form.user_id.value,
+        password: create_hash(form.password.value)};
+    
+    //呼び出し
+    post_login(info);
     
 }
 
@@ -16,8 +25,7 @@ function login_button()
  * ログインできるときはtrueを返す
  * @param {object} info user_id, passwordを含むオブジェクト型
  */
-async function post_login(info)
-{
+async function post_login(info){
     await $.ajax(
         {
         type: 'POST',
@@ -35,7 +43,16 @@ async function post_login(info)
     });
 }
 
-
+/**
+ * 文字列をハッシュ化する
+ * @param {string} str ハッシュ化したい文字列 
+ * @returns ハッシュ値
+ */
+function create_hash(str){
+    const sha = new jsSHA("SHA-256","TEXT");
+    sha.update(str);
+    return sha.getHash("HEX");
+}
 
 /*
 var app = new Vue({
