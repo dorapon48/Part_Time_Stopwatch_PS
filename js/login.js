@@ -16,17 +16,22 @@ function login_button(){
         password: create_hash(form.password.value)};
     
     //呼び出し
-    post_login(info);
-    
+    //promise型は，thenで戻り値を取り出す
+    post_login(info).then(function (value){
+        if (value){
+            show_contents_page();
+        }
+    });
 }
 
 /**
  * login.phpにPOSTを投げる．
  * ログインできるときはtrueを返す
  * @param {object} info user_id, passwordを含むオブジェクト型
- * @returns bool
+ * @returns bool (promise型に注意)
  */
 async function post_login(info){
+    let checker = false;
     await $.ajax(
         {
         type: 'POST',
@@ -42,14 +47,22 @@ async function post_login(info){
 
         if (result.login != 1){
             window.alert(result.errormessage);
-            return false;
         } else {
-            return true;
+            checker = true;
         }
 
     }).fail(function () {
         window.alert("サーバとの接続に失敗しました。");
     });
+
+    return checker;
+}
+
+/**
+ * contents.phpを表示する
+ */
+function show_contents_page(){
+    window.location.href = 'contents.php'
 }
 
 /**
