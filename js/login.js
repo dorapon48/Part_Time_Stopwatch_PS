@@ -1,9 +1,5 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-let list = [];
+
+//ログインページのスクリプト
 
 /**
  * ログインボタンを押したときに呼び出される．
@@ -25,7 +21,7 @@ async function post_login(info)
     await $.ajax(
         {
         type: 'POST',
-        url: 'login.php',
+        url: 'php/login.php',
         async: false,
         data:{
             user_id: info.user_id,
