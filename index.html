@@ -6,36 +6,30 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODOリスト</title>
+        <title>ログイン</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <!--
         <link rel="stylesheet" href="css/app.css">
-        <!--jquery追加忘れずに！-->
+        -->
+        <!--jquery-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
-    <body v-on="getItem()">
-        <div id="app">
-            <h1>TODO list</h1>
-            <!--なんか構文エラーみたいな赤線出るけど気にしないで！！-->
-            <!--ちなみに，vueでリアルタイムにデータが反映されることを「データバインディング」といいます-->
-            <form v-on:submit.prevent>
-                <input type="text" v-model="newItem">　<!--タスク入力フォーム-->
-                <button v-on:click="multipleHandler">追加</button>  <!--追加ボタン-->
+    <body>
+        <div id="login">
+            <h1>ログインページ</h1>
+            <form name="info">
+                <label>ユーザID</label>
+                <!--user_id-->
+                <input type="text" name="user_id">
+                <br>
+                <label>パスワード</label>
+                <!--password-->
+                <input type="password" name="password">
             </form>
-            
-            <ul>
-                <li v-for="(todo, index) in todos">
-                    <input type="checkbox" v-model="todo.isDone" v-on:click="updateItem(index)">
-                    <span v-bind:class="{done: todo.isDone}">{{todo.item}}</span>
-                    <button v-on:click="deleteItem(index)">削除</button>  <!--削除ボタン-->
-                </li>
-            </ul>
-            <!--データの中身を表示したいときは{{}}で囲む-->
-            <p>{{$data.todos.todo}}</p>
+            <button type="button" onclick="login_button()">ログイン</button>
         </div>
-        
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="js/app.js"></script>
     </body>
+    <script src="js/sha256.js"></script>
+    <script src="js/login.js"></script>
 </html>
+

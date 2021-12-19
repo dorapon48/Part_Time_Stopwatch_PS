@@ -1,0 +1,21 @@
+add_start_time.php
+入力されたstart_timeとuser_idをstock_timesテーブルに登録する
+
+get_start_time.php
+入力されたuser_idを持つレコードをstock_timesテーブルから取り出す
+存在しないときはnullを返す
+
+delete_start_time.php
+入力されたuser_idを持つレコードを削除する
+
+add_part_times.php
+入力されたuser_id, start_time, end_time, user_id, job_infoをpart_timesテーブルに追加するこの時，job_idを生成して入力する
+
+get_part_times.php
+入力されたuser_idを持つレコードをpart_timesテーブルから取り出す
+リストで返す
+存在しないときはnullを返す
+
+login.php
+入力されたuser_idとpasswordを持つレコードがあるか確認する
+あるならば$_SESSIONにuser_idを設定する
