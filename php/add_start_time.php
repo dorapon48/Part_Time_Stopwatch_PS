@@ -1,6 +1,4 @@
 <?php
-// セッション開始
-session_start();
 
 // database
 $serverName = "localhost";
@@ -12,24 +10,25 @@ $pdo = new PDO($dsn, $user, $pw);
 
 // やり取りに使う配列とエラーメッセージ等
 $res_arrays = array();
-$res_arrays["login"] = 0;
+$res_arrays["error"] = 1;
 $res_arrays["errormessage"] = "";
 
 // POSTの入力
 $user_id = filter_input(INPUT_POST, "user_id");
-$password = filter_input(INPUT_POST, "password");
+$start_time = filter_input(INPUT_POST, "start_time");
 
 // SQL文
-$sql = "SELECT COUNT(*) FROM user WHERE user_id = :user_id AND password = :password";
+$sql = "INSERT INTO stock_times (user_id, start_time) VALUES (:user_id, :start_time)";
 
 try
 {
     //prepareがsql文の準備
     //bindValueで指定した文字列に代入
     //executeでsqlを実行
+    $d = date('Y-m-d H:i:s', strtotime($start_time)); //dateフォーマットに合わせてstringを送る
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(":user_id", $user_id, PDO::PARAM_STR);
-    $stmt->bindValue(":password", $password, PDO::PARAM_STR);
+    $stmt->bindValue(":start_time", $d, PDO::PARAM_STR);
     $result = $stmt->execute();
 
     //エラー時処理
@@ -38,17 +37,8 @@ try
         echo json_encode($res_arrays);
         die();
     }
+    $res_arrays["error"] = 0;
 
-    //ログイン処理
-    $row = $stmt->fetch(); 
-    if ($row['COUNT(*)'] == 0) {
-        $res_arrays["errormessage"] = "ユーザIDかパスワードが違います。";
-    } else {
-        $_SESSION["user_id"] = $user_id;
-        $res_arrays["login"] = 1;
-    }
-
-    //$res_arrays["errormessage"] = $row;
     //返却
     echo json_encode($res_arrays);
     die();

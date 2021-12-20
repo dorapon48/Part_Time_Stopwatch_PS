@@ -1,3 +1,15 @@
+<!--直接読み込みをはじく-->
+<?php
+session_start();
+
+if(!isset($_SESSION["user_id"])) {
+    $no_login_url = "index.html";
+    header("Location: {$no_login_url}");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,11 +19,14 @@
         <link rel="stylesheet" href="css/contents.css">
         <!--jquery-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="js/contents.js"></script>
     </head>
     <body>
         <h1>TEST</h1>
         <div class="main">
-            <button name="start" type="button" onclick="">スタート</button>
+            <div id="start-end-button">
+                <button name="start" type="button" onclick="start_button('<?php echo $_SESSION['user_id'] ?>')">スタート</button>
+            </div>
             <table id="logs">
                 <tr>
                     <th>日付</th>
