@@ -11,7 +11,6 @@
 function start_button(user_id){
     console.log(user_id);
     const time = new Date();
-    
     let info = {user_id: user_id, start_time: time_format(time)};
 
     post_start_time(info).then(function (value){
@@ -25,7 +24,11 @@ function start_button(user_id){
  * 終了ボタンを押したときに呼び出される．
  * show_input_info_popupを呼び出す
  */
-function end_button(){
+function end_button(user_id){
+    const time = new Date();
+    let info = {user_id: user_id, end_time: time_format(time)};
+
+    input_info_popup_init(info);
     show_input_info_popup();
     //change_show_button(true);
 }
@@ -115,6 +118,14 @@ function change_show_button(which){
 function show_input_info_popup(){
     let target = document.getElementById('job-info-modal');
     target.style.display = "block";
+}
+
+/**
+ * 情報入力ポップアップに初期情報を入力する
+ * @param {Object} info user_id, end_time
+ */
+function input_info_popup_init(info){
+
 }
 
 //その他
