@@ -26,7 +26,8 @@ function start_button(user_id){
  * show_input_info_popupを呼び出す
  */
 function end_button(){
-    change_show_button(true);
+    show_input_info_popup();
+    //change_show_button(true);
 }
 
 /**
@@ -35,7 +36,7 @@ function end_button(){
  * change_show_button(true)，post_part_timesを呼び出す
  */
 function input_confirm_button(){
-    
+    change_show_button(true);
 }
 
 /**
@@ -56,6 +57,7 @@ function excel_confirm_button(){
 }
 
 //php類
+
 /**
  * add_start_time.phpにPOSTを投げる
  * postはstart_timeとuser_idを含む
@@ -100,10 +102,19 @@ async function post_start_time(info){
 function change_show_button(which){
     //console.log(document.getElementById('start-end-button'));
     if (which){
-        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" onclick=\"start_button()\">スタート</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" onclick=\"start_button('<?php echo $_SESSION['user_id'] ?>')\">スタート</button>";
     } else {
         document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button()\">終了</button>";
     }
+}
+
+/**
+ * 終了ボタンを押したときに呼び出される．
+ * 情報入力ポップアップを表示する
+ */
+function show_input_info_popup(){
+    let target = document.getElementById('job-info-modal');
+    target.style.display = "block";
 }
 
 //その他
