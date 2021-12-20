@@ -25,7 +25,7 @@ if(!isset($_SESSION["user_id"])) {
         <h1>TEST</h1>
         <div class="main">
             <div id="start-end-button">
-                <button name="start" type="button" onclick="start_button()">スタート</button>
+                <button name="start" type="button" onclick="start_button('<?php echo $_SESSION['user_id'] ?>')">スタート</button>
             </div>
             <table id="logs">
                 <tr>

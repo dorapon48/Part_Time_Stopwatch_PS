@@ -6,9 +6,19 @@
 /**
  * スタートボタンを押したときに呼び出される．
  * post_start_time，change_show_button(false)を呼び出す
+ * @param {String} user_id ユーザID
  */
-function start_button(){
-    change_show_button(false);
+function start_button(user_id){
+    console.log(user_id);
+    const time = new Date();
+    
+    let info = {user_id: user_id, start_time: time_format(time)};
+
+    post_start_time(info).then(function (value){
+        if (value){
+            change_show_button(false);
+        }
+    });
 }
 
 /**
@@ -61,8 +71,8 @@ async function post_start_time(info){
         url: 'php/add_start_time.php',
         async: false,
         data:{
-            start_time: info.start_time,
-            user_id: info.user_id
+            user_id: info.user_id,
+            start_time: info.start_time
         }
     }).done(function (data) {
         let result = JSON.parse(data);
@@ -94,4 +104,15 @@ function change_show_button(which){
     } else {
         document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button()\">終了</button>";
     }
+}
+
+//その他
+/**
+ * 入力されたdateを
+ * YYYY-MM-DD HH:MM:SSの形にして返す
+ * @param {Date} date 入力
+ * @returns YYYY-MM-DD HH:MM:SSのstring
+ */
+function time_format(date){
+    return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' +('0' + date.getDate()).slice(-2) + ' ' +  ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2) + '.' + date.getMilliseconds();
 }
