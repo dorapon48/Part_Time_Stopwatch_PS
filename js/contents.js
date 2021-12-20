@@ -8,7 +8,7 @@
  * post_start_time，change_show_button(false)を呼び出す
  */
 function start_button(){
-
+    change_show_button(false);
 }
 
 /**
@@ -16,7 +16,7 @@ function start_button(){
  * show_input_info_popupを呼び出す
  */
 function end_button(){
-
+    change_show_button(true);
 }
 
 /**
@@ -43,4 +43,18 @@ function excel_button(){
  */
 function excel_confirm_button(){
 
+}
+
+/**
+ * trueの時スタートボタン，
+ * falseの時終了ボタンを表示する
+ * @param {bool} which どちらを表示するかを示す
+ */
+function change_show_button(which){
+    //console.log(document.getElementById('start-end-button'));
+    if (which){
+        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" onclick=\"start_button()\">スタート</button>";
+    } else {
+        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button()\">終了</button>";
+    }
 }

@@ -24,7 +24,9 @@ if(!isset($_SESSION["user_id"])) {
     <body>
         <h1>TEST</h1>
         <div class="main">
-            <button name="start" type="button" onclick="">スタート</button>
+            <div id="start-end-button">
+                <button name="start" type="button" onclick="start_button()">スタート</button>
+            </div>
             <table id="logs">
                 <tr>
                     <th>日付</th>
