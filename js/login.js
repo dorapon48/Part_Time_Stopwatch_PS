@@ -43,7 +43,7 @@ async function post_login(info){
         }
     }).done(function (data) {
         let result = JSON.parse(data);
-        console.log(result);
+        //console.log(result);
 
         if (result.login != 1){
             window.alert(result.errormessage);
