@@ -19,6 +19,7 @@ if(!isset($_SESSION["user_id"])) {
         <link rel="stylesheet" href="css/contents.css">
         <!--jquery-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="js/contents.js"></script>
     </head>
     <body>
         <h1>TEST</h1>
