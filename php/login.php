@@ -1,4 +1,6 @@
 <?php
+// セッション開始
+session_start();
 
 // database
 $serverName = "localhost";

@@ -1,3 +1,15 @@
+<!--直接読み込みをはじく-->
+<?php
+session_start();
+
+if(!isset($_SESSION["user_id"])) {
+    $no_login_url = "index.html";
+    header("Location: {$no_login_url}");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
