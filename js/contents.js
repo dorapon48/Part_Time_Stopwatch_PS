@@ -125,7 +125,7 @@ function show_input_info_popup(){
  * @param {Object} info user_id, end_time
  */
 function input_info_popup_init(info){
-
+    console.log(info.end_time);
 }
 
 //その他
