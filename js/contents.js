@@ -161,10 +161,9 @@ function show_input_info_popup(){
 async function input_info_popup_init(info){
     let checker = false;
     let times = {s: null, e: null};
+
     times.e = datetime_local_format(info.end_time);
-    //console.log(datetime_local_format(info.end_time));
     await get_start_time(info).then(function (value){
-        //console.log(datetime_local_format(value.start_time));
         if (value.start_time != null){
             times.s = datetime_local_format(value.start_time);
             document.getElementById('start-time').value = times.s;
