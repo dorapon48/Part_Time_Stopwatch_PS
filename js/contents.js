@@ -28,8 +28,11 @@ function end_button(user_id){
     const time = new Date();
     let info = {user_id: user_id, end_time: time_format(time)};
 
-    input_info_popup_init(info);
-    show_input_info_popup();
+    input_info_popup_init(info).then(function (value){
+        if(value){
+            show_input_info_popup();
+        }
+    });
     //change_show_button(true);
 }
 
@@ -95,7 +98,7 @@ async function post_start_time(info){
 }
 
 /**
- * part_timesテーブルの情報を取ってくる．
+ * stock_timesテーブルの情報を取ってくる．
  * get_part_times.phpにPOSTを投げる
  * なければnullを返す
  * @param {Object} info user_id
@@ -151,18 +154,27 @@ function show_input_info_popup(){
 
 /**
  * 情報入力ポップアップに初期情報を入力する
+ * start_timeがとってこれなかった時はfalseを返す
  * @param {Object} info user_id, end_time
+ * @returns bool
  */
-function input_info_popup_init(info){
+async function input_info_popup_init(info){
+    let checker = false;
     let times = {s: null, e: null};
     times.e = datetime_local_format(info.end_time);
     //console.log(datetime_local_format(info.end_time));
-    get_start_time(info).then(function (value){
+    await get_start_time(info).then(function (value){
         //console.log(datetime_local_format(value.start_time));
-        times.s = datetime_local_format(value.start_time);
-        document.getElementById('start-time').value = times.s;
-        document.getElementById('end-time').value = times.e;
+        if (value.start_time != null){
+            times.s = datetime_local_format(value.start_time);
+            document.getElementById('start-time').value = times.s;
+            document.getElementById('end-time').value = times.e;
+            checker = true;
+        } else {
+            window.alert("不明のエラー");
+        }
     });
+    return checker;
 }
 
 
