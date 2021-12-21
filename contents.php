@@ -22,7 +22,7 @@ if(!isset($_SESSION["user_id"])) {
         <script src="js/contents.js"></script>
     </head>
     <body>
-        <h1>TEST</h1>
+        <h1>PS</h1>
         <div class="main">
             <div id="start-end-button">
                 <button name="start" type="button" onclick="start_button('<?php echo $_SESSION['user_id'] ?>')">スタート</button>
@@ -57,12 +57,10 @@ if(!isset($_SESSION["user_id"])) {
                         <div class="titles">
                             <span id="start-title">開始時間</span>
                             <span id="end-title">終了時間</span>
-                            <span id="time-title">就業時間</span>
                         </div>
                         <div class="input-times">
                             <input type="time" name="start_time">
                             <input type="time" name="end_time">
-                            <span>時間</span>
                         </div>
                         <p>仕事内容</p>
                         <input type="text" name="job_info">

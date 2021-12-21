@@ -107,7 +107,7 @@ function change_show_button(which){
     if (which){
         document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" onclick=\"start_button('<?php echo $_SESSION['user_id'] ?>')\">スタート</button>";
     } else {
-        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button()\">終了</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button('<?php echo $_SESSION['user_id'] ?>')\">ストップ</button>";
     }
 }
 
