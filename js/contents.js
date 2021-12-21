@@ -59,7 +59,7 @@ function excel_confirm_button(){
 
 }
 
-//php類
+//post, get類
 
 /**
  * add_start_time.phpにPOSTを投げる
@@ -94,6 +94,35 @@ async function post_start_time(info){
     return checker;
 }
 
+/**
+ * part_timesテーブルの情報を取ってくる．
+ * get_part_times.phpにPOSTを投げる
+ * なければnullを返す
+ * @param {Object} info user_id
+ * @returns promise (start_time)
+ */
+async function get_start_time(info){
+    let re_info = {start_time: null};
+    await $.ajax(
+        {
+        type: 'POST',
+        url: 'php/get_start_time.php',
+        async: false,
+        data:{
+            user_id: info.user_id
+        }
+    }).done(function (data) {
+        let result = JSON.parse(data);
+        console.log(result);
+
+        if (result.error != 1){
+            re_info.start_time = result.start_time;
+        }
+    }).fail(function () {
+        window.alert("サーバとの接続に失敗しました。");
+    });
+    return re_info;
+}
 
 //表示類
 

@@ -43,7 +43,7 @@ try
         $res_arrays["start_time"] = $row['start_time'];
         $res_arrays["error"] = 0;
     } else {
-        $res_arrays["errormessage"] = "エラー(時間の登録なし)";
+        $res_arrays["errormessage"] = "時間の登録なし";
     }
 
     //返却
