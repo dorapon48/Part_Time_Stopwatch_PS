@@ -134,9 +134,9 @@ async function get_start_time(info){
 function change_show_button(which){
     //console.log(document.getElementById('start-end-button'));
     if (which){
-        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" onclick=\"start_button('<?php echo $_SESSION['user_id'] ?>')\">スタート</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" onclick=\"start_button('" + SESSION_user_id + "')\">スタート</button>";
     } else {
-        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button('<?php echo $_SESSION['user_id'] ?>')\">ストップ</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button('" + SESSION_user_id + "')\">ストップ</button>";
     }
 }
 
@@ -154,10 +154,20 @@ function show_input_info_popup(){
  * @param {Object} info user_id, end_time
  */
 function input_info_popup_init(info){
-    console.log(info.end_time);
+    let times = {s: null, e: null};
+    times.e = datetime_local_format(info.end_time);
+    //console.log(datetime_local_format(info.end_time));
+    get_start_time(info).then(function (value){
+        //console.log(datetime_local_format(value.start_time));
+        times.s = datetime_local_format(value.start_time);
+        document.getElementById('start-time').value = times.s;
+        document.getElementById('end-time').value = times.e;
+    });
 }
 
+
 //その他
+
 /**
  * 入力されたdateを
  * YYYY-MM-DD HH:MM:SSの形にして返す
@@ -165,5 +175,17 @@ function input_info_popup_init(info){
  * @returns YYYY-MM-DD HH:MM:SSのstring
  */
 function time_format(date){
-    return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' +('0' + date.getDate()).slice(-2) + ' ' +  ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2) + '.' + date.getMilliseconds();
+    return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' +('0' + date.getDate()).slice(-2) + ' ' +  ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
+}
+
+/**
+ * 入力されたYYYY-MM-DD HH:MM:SS型のstringを
+ * YYYY-MM-DDTHH:MMの形にして返す
+ * @param {string} date 入力
+ * @returns YYYY-MM-DDTHH:MMのstring
+ */
+function datetime_local_format(date){
+    let s = date.split(' ');
+    let s2 = s[1].split(':');
+    return s[0] + 'T' + s2[0] + ':' + s2[1];
 }

@@ -25,7 +25,6 @@ try
     //prepareがsql文の準備
     //bindValueで指定した文字列に代入
     //executeでsqlを実行
-    $d = date('Y-m-d H:i:s', strtotime($start_time)); //dateフォーマットに合わせてstringを送る
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(":user_id", $user_id, PDO::PARAM_STR);
     $result = $stmt->execute();

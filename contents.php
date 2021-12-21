@@ -19,6 +19,7 @@ if(!isset($_SESSION["user_id"])) {
         <link rel="stylesheet" href="css/contents.css">
         <!--jquery-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>const SESSION_user_id = "<?php echo $_SESSION['user_id'] ?>" </script>
         <script src="js/contents.js"></script>
     </head>
     <body>
@@ -59,8 +60,8 @@ if(!isset($_SESSION["user_id"])) {
                             <span id="end-title">終了時間</span>
                         </div>
                         <div class="input-times">
-                            <input type="time" name="start_time">
-                            <input type="time" name="end_time">
+                            <input type="datetime-local" name="start_time" id="start-time">
+                            <input type="datetime-local" name="end_time" id="end-time">
                         </div>
                         <p>仕事内容</p>
                         <input type="text" name="job_info">
