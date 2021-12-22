@@ -286,6 +286,37 @@ async function delete_output_file(){
     });
     return checker;
 }
+
+/**
+ * part_timesテーブルの情報を取ってくる．
+ * get_part_times.phpにPOSTを投げる
+ * @param {Object} info user_id
+ * @returns start_time, end_time, job_info, others を含むリスト
+ */
+async function get_logs(info){
+    let re_info = null;
+
+    await $.ajax(
+        {
+        type: 'POST',
+        url: 'php/get_part_times.php',
+        async: false,
+        data:{
+            user_id: info.user_id
+        }
+    }).done(function (data) {
+        let result = JSON.parse(data);
+        console.log(result);
+
+        if (result.error != 1){
+            re_info = result.items;
+        }
+    }).fail(function () {
+        window.alert("サーバとの接続に失敗しました。");
+    });
+    return re_info;
+}
+
 //表示類
 
 /**
