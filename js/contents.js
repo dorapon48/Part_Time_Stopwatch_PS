@@ -44,8 +44,6 @@ function end_button(user_id){
 function input_confirm_button(user_id){
     let form = document.forms.input_job_info;
     let info = {start_time: null, end_time: null, user_id: null, job_info: null, others: null};
-    let checker = true;
-    let message = "";
 
     //入力確認
     if (!input_info_check(form)){
@@ -77,7 +75,7 @@ function input_confirm_button(user_id){
  * show_input_excel_popupを呼び出す
  */
 function excel_button(){
-
+    show_input_excel_popup();
 }
 
 /**
@@ -86,7 +84,24 @@ function excel_button(){
  * post_change_excelを呼び出す
  */
 function excel_confirm_button(){
+    let form = document.forms.input_excel;
+    let info = new FormData(form);
+    
+    if (!form.excel.value){
+        window.alert("ファイルを入力してください．");
+        return 0;
+    }
 
+    post_change_excel(info).then(function (value){
+        if (value){
+            download_output_file();
+            delete_output_file().then(function (value2){
+                if (value2){
+                    close_input_excel_popup();
+                }
+            });
+        }
+    });
 }
 
 //post, get類
@@ -216,6 +231,61 @@ async function add_part_times(info){
     });
     return checker;
 }
+
+/**
+ * add_job_info_for_excel.phpにPOSTを投げる
+ * @param {Object} info user_id, file
+ * @returns 
+ */
+async function post_change_excel(info){
+    let checker = false;
+
+    await $.ajax(
+        {
+        type: 'POST',
+        url: 'php/add_job_info_for_excel.php',
+        async: false,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 50000,
+        data: info
+    }).done(function (data) {
+        let result = JSON.parse(data);
+        //console.log(result);
+        if (result.error != 1){
+            checker = true;
+        }
+    }).fail(function () {
+        window.alert("サーバとの接続に失敗しました。");
+    });
+    return checker;
+}
+
+/**
+ * 一時的に生成したoutput.xlsxを
+ * 削除するためのGETを投げる
+ * @returns primise(bool)
+ */
+async function delete_output_file(){
+    let checker = false;
+
+    await $.ajax(
+        {
+        type: 'GET',
+        url: 'php/delete_output_file.php',
+        async: false
+    }).done(function (data) {
+        let result = JSON.parse(data);
+
+        if (result.error != 1){
+            checker = true;
+        }
+    }).fail(function () {
+        window.alert("サーバとの接続に失敗しました。");
+    });
+    return checker;
+}
 //表示類
 
 /**
@@ -250,6 +320,22 @@ function close_input_info_popup(){
 }
 
 /**
+ * excel入力ポップアップを表示する
+ */
+function show_input_excel_popup(){
+    let target = document.getElementById('excel-modal');
+    target.style.display = "block";
+}
+
+/**
+ * excel入力ポップアップを閉じる
+ */
+function close_input_excel_popup(){
+    let target = document.getElementById('excel-modal');
+    target.style.display = "none";
+}
+
+/**
  * 情報入力ポップアップに初期情報を入力する
  * start_timeがとってこれなかった時はfalseを返す
  * @param {Object} info user_id, end_time
@@ -272,7 +358,6 @@ async function input_info_popup_init(info){
     });
     return checker;
 }
-
 
 //その他
 
@@ -315,4 +400,19 @@ function input_info_check(form){
         return false;
     }
     return true;
+}
+
+/**
+ * output.xlsxをダウンロードさせる
+ */
+function download_output_file(){
+    let a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+    //ファイルの場所
+    a.href = "output/output.xlsx";
+    //ダウンロードさせるファイル名の生成
+    a.download = "output.xlsx";
+    //クリックイベント発火
+    a.click();
 }
