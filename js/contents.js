@@ -85,11 +85,14 @@ function excel_button(){
  */
 function excel_confirm_button(){
     let form = document.forms.input_excel;
-    //let info = {user_id: 'test', file: null};
-    //info.file = $("*[name=excel]").val();
-    //console.log(info);
     let info = new FormData(form)
-    post_change_excel(info);
+
+    post_change_excel(info).then(function (value){
+        if (value){
+            download_output_file();
+            
+        }
+    });
 }
 
 //post, get類
@@ -240,7 +243,7 @@ async function post_change_excel(info){
         data: info
     }).done(function (data) {
         let result = JSON.parse(data);
-        console.log(result);
+        //console.log(result);
         if (result.error != 1){
             checker = true;
         }
@@ -364,4 +367,19 @@ function input_info_check(form){
         return false;
     }
     return true;
+}
+
+/**
+ * output.xlsxをダウンロードさせる
+ */
+function download_output_file(){
+    let a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+    //ファイルの場所
+    a.href = "../output/output.xlsx";
+    //ダウンロードさせるファイル名の生成
+    a.download = "output.xlsx";
+    //クリックイベント発火
+    a.click();
 }
