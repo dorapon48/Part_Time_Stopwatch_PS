@@ -41,8 +41,35 @@ function end_button(user_id){
  * ポップアップを閉じる．
  * change_show_button(true)，post_part_timesを呼び出す
  */
-function input_confirm_button(){
-    change_show_button(true);
+function input_confirm_button(user_id){
+    let form = document.forms.input_job_info;
+    let info = {start_time: null, end_time: null, user_id: null, job_info: null, others: null};
+    let checker = true;
+    let message = "";
+
+    //入力確認
+    if (!form.start_time.value){ message += "開始時間が入力されていません\n"; }
+    if (!form.end_time.value){ message += "終了時間が入力されていません\n"; }
+    if (!form.job_info.value){ message += "仕事内容が入力されていません\n"; }
+    if (message != "") { checker = false; }
+    if (!checker){
+        window.alert(message);
+        return 0;   
+    }
+
+    //dateの入力はYYYY-MM-DD HH:MMなので，Tを変換
+    info.start_time = form.start_time.value.replace('T', ' ');
+    info.end_time = form.end_time.value.replace('T', ' ');
+    info.job_info = form.job_info.value;
+    info.others = form.others.value;
+    info.user_id = user_id;
+
+    add_part_times(info).then(function (value){
+        if (value){
+            close_input_info_popup();
+            change_show_button(true);
+        }
+    });
 }
 
 /**
@@ -183,6 +210,14 @@ function change_show_button(which){
 function show_input_info_popup(){
     let target = document.getElementById('job-info-modal');
     target.style.display = "block";
+}
+
+/**
+ * 情報入力ポップアップを閉じる
+ */
+function close_input_info_popup(){
+    let target = document.getElementById('job-info-modal');
+    target.style.display = "none";
 }
 
 /**

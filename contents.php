@@ -33,7 +33,6 @@ if(!isset($_SESSION["user_id"])) {
                     <th>日付</th>
                     <th>開始時間</th>
                     <th>終了時間</th>
-                    <th>就業時間</th>
                     <th>仕事内容</th>
                     <th>補足</th>
                 </tr>
@@ -68,7 +67,7 @@ if(!isset($_SESSION["user_id"])) {
                         <p>補足</p>
                         <input type="text" name="others">
                     </form>
-                    <button name="complete" type="button" onclick="">完了</button>
+                    <button name="complete" type="button" onclick="input_confirm_button('<?php echo $_SESSION['user_id'] ?>')">完了</button>
                 </div>
             </div>
         </div>
