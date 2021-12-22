@@ -19,10 +19,11 @@ if(!isset($_SESSION["user_id"])) {
         <link rel="stylesheet" href="css/contents.css">
         <!--jquery-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>const SESSION_user_id = "<?php echo $_SESSION['user_id'] ?>" </script>
         <script src="js/contents.js"></script>
     </head>
     <body>
-        <h1>TEST</h1>
+        <h1>PS</h1>
         <div class="main">
             <div id="start-end-button">
                 <button name="start" type="button" onclick="start_button('<?php echo $_SESSION['user_id'] ?>')">スタート</button>
@@ -32,7 +33,6 @@ if(!isset($_SESSION["user_id"])) {
                     <th>日付</th>
                     <th>開始時間</th>
                     <th>終了時間</th>
-                    <th>就業時間</th>
                     <th>仕事内容</th>
                     <th>補足</th>
                 </tr>
@@ -57,19 +57,17 @@ if(!isset($_SESSION["user_id"])) {
                         <div class="titles">
                             <span id="start-title">開始時間</span>
                             <span id="end-title">終了時間</span>
-                            <span id="time-title">就業時間</span>
                         </div>
                         <div class="input-times">
-                            <input type="time" name="start_time">
-                            <input type="time" name="end_time">
-                            <span>時間</span>
+                            <input type="datetime-local" name="start_time" id="start-time">
+                            <input type="datetime-local" name="end_time" id="end-time">
                         </div>
                         <p>仕事内容</p>
                         <input type="text" name="job_info">
                         <p>補足</p>
                         <input type="text" name="others">
                     </form>
-                    <button name="complete" type="button" onclick="">完了</button>
+                    <button name="complete" type="button" onclick="input_confirm_button('<?php echo $_SESSION['user_id'] ?>')">完了</button>
                 </div>
             </div>
         </div>
