@@ -12,13 +12,12 @@ $pdo = new PDO($dsn, $user, $pw);
 $res_arrays = array();
 $res_arrays["error"] = 1;
 $res_arrays["errormessage"] = "";
-$res_arrays["start_time"] = "";
 
 // POSTの入力
 $user_id = filter_input(INPUT_POST, "user_id");
 
 // SQL文
-$sql = "SELECT * FROM stock_times WHERE user_id = :user_id";
+$sql = "SELECT * FROM part_times WHERE user_id = :user_id";
 
 try
 {
@@ -35,17 +34,20 @@ try
         echo json_encode($res_arrays);
         die();
     }
-    
-    //返却の成形
-    $row = $stmt->fetch();
-    if ($row) {
-        $res_arrays["start_time"] = $row['start_time'];
-        $res_arrays["error"] = 0;
-    } else {
-        $res_arrays["errormessage"] = "時間の登録なし";
+
+    $items = array();
+    while ($row = $stmt->fetch()) {
+        $items[] = array(
+            'start_time' => $row['start_time'],
+            'end_time' => $row['end_time'],
+            'job_info' => $row['job_info'],
+            'others' => $row['others']
+        );
     }
+    $res_arrays["error"] = 0;
 
     //返却
+    $res_arrays["data"] = $items;
     echo json_encode($res_arrays);
     die();
 
