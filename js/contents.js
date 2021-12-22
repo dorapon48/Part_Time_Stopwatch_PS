@@ -62,8 +62,12 @@ function input_confirm_button(user_id){
     //post
     add_part_times(info).then(function (value){
         if (value){
-            close_input_info_popup();
-            change_show_button(true);
+            delete_start_time(info).then(function (value2){
+                if (value2){
+                    close_input_info_popup();
+                    change_show_button(true);
+                }
+            });
         }
     });
 }
@@ -166,7 +170,7 @@ async function delete_start_time(info){
         url: 'php/delete_start_time.php',
         async: false,
         data:{
-            user_id: info.user_id,
+            user_id: info.user_id
         }
     }).done(function (data) {
         let result = JSON.parse(data);
