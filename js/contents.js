@@ -214,6 +214,34 @@ async function add_part_times(info){
     });
     return checker;
 }
+
+/**
+ * add_job_info_for_excel.phpにPOSTを投げる
+ * @param {file} file excelファイル
+ * @returns 
+ */
+async function post_change_excel(file){
+    let checker = false;
+
+    await $.ajax(
+        {
+        type: 'POST',
+        url: 'php/add_job_info_for_excel.php',
+        async: false,
+        data:{
+            file: file
+        }
+    }).done(function (data) {
+        let result = JSON.parse(data);
+
+        if (result.error != 1){
+            checker = true;
+        }
+    }).fail(function () {
+        window.alert("サーバとの接続に失敗しました。");
+    });
+    return checker;
+}
 //表示類
 
 /**
