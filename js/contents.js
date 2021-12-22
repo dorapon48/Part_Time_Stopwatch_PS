@@ -89,8 +89,9 @@ function excel_confirm_button(){
 
     post_change_excel(info).then(function (value){
         if (value){
+            console.log("test");
             download_output_file();
-            
+
         }
     });
 }
@@ -252,6 +253,31 @@ async function post_change_excel(info){
     });
     return checker;
 }
+
+/**
+ * 一時的に生成したoutput.xlsxを
+ * 削除するためのGETを投げる
+ * @returns primise(bool)
+ */
+async function delete_output_file(){
+    let checker = false;
+
+    await $.ajax(
+        {
+        type: 'GET',
+        url: 'php/delete_output_file.php',
+        async: false
+    }).done(function (data) {
+        let result = JSON.parse(data);
+
+        if (result.error != 1){
+            checker = true;
+        }
+    }).fail(function () {
+        window.alert("サーバとの接続に失敗しました。");
+    });
+    return checker;
+}
 //表示類
 
 /**
@@ -325,7 +351,6 @@ async function input_info_popup_init(info){
     return checker;
 }
 
-
 //その他
 
 /**
@@ -377,7 +402,7 @@ function download_output_file(){
     document.body.appendChild(a);
     a.style = "display: none";
     //ファイルの場所
-    a.href = "../output/output.xlsx";
+    a.href = "output/output.xlsx";
     //ダウンロードさせるファイル名の生成
     a.download = "output.xlsx";
     //クリックイベント発火
