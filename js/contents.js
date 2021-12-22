@@ -1,6 +1,20 @@
 
 //メインページのスクリプト
 
+//onload
+window.onload = function() {
+    info = {user_id: SESSION_user_id};
+    input_info_logs(info).then(function (value){
+        get_start_time(info).then(function (value2){
+            if (value2.start_time){
+                change_show_button(false);
+            }
+        });
+    });
+    
+};
+
+
 //ボタン類
 
 /**

@@ -38,7 +38,7 @@ try
     
     //返却の成形
     $row = $stmt->fetch();
-    if ($row['start_time'] != "") {
+    if ($row) {
         $res_arrays["start_time"] = $row['start_time'];
         $res_arrays["error"] = 0;
     } else {
