@@ -13,7 +13,7 @@ function start_button(user_id){
     const time = new Date();
     let info = {user_id: user_id, start_time: time_format(time)};
 
-    post_start_time(info).then(function (value){
+    add_start_time(info).then(function (value){
         if (value){
             change_show_button(false);
         }
@@ -68,9 +68,9 @@ function excel_confirm_button(){
  * add_start_time.phpにPOSTを投げる
  * postはstart_timeとuser_idを含む
  * @param {Object} info start_time, user_id
- * @returns promise に注意
+ * @returns promise(bool) に注意
  */
-async function post_start_time(info){
+async function add_start_time(info){
     let checker = false;
 
     await $.ajax(
@@ -106,6 +106,7 @@ async function post_start_time(info){
  */
 async function get_start_time(info){
     let re_info = {start_time: null};
+
     await $.ajax(
         {
         type: 'POST',
@@ -127,6 +128,38 @@ async function get_start_time(info){
     return re_info;
 }
 
+/**
+ * part_timesテーブルに情報を追加する
+ * add_part_times.phpにPOSTを投げる
+ * @param {Object} info start_time, end_time, user_id, job_info, others
+ * @returns promise(bool)
+ */
+async function add_part_times(info){
+    let checker = false;
+
+    await $.ajax(
+        {
+        type: 'POST',
+        url: 'php/add_part_times.php',
+        async: false,
+        data:{
+            user_id: info.user_id,
+            start_time: info.start_time,
+            end_time: info.end_time,
+            job_info: info.job_info,
+            others: info.others
+        }
+    }).done(function (data) {
+        let result = JSON.parse(data);
+
+        if (result.error != 1){
+            checker = true;
+        }
+    }).fail(function () {
+        window.alert("サーバとの接続に失敗しました。");
+    });
+    return checker;
+}
 //表示類
 
 /**
