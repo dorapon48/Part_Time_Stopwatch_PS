@@ -85,13 +85,21 @@ function excel_button(){
  */
 function excel_confirm_button(){
     let form = document.forms.input_excel;
-    let info = new FormData(form)
+    let info = new FormData(form);
+    
+    if (!form.excel.value){
+        window.alert("ファイルを入力してください．");
+        return 0;
+    }
 
     post_change_excel(info).then(function (value){
         if (value){
-            console.log("test");
             download_output_file();
-
+            delete_output_file().then(function (value2){
+                if (value2){
+                    close_input_excel_popup();
+                }
+            });
         }
     });
 }
