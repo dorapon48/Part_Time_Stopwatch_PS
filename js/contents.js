@@ -64,6 +64,7 @@ function input_confirm_button(user_id){
                 if (value2){
                     close_input_info_popup();
                     change_show_button(true);
+                    input_info_logs(info);
                 }
             });
         }
@@ -309,7 +310,7 @@ async function get_logs(info){
         console.log(result);
 
         if (result.error != 1){
-            re_info = result.items;
+            re_info = result.data;
         }
     }).fail(function () {
         window.alert("サーバとの接続に失敗しました。");
@@ -370,7 +371,7 @@ function close_input_excel_popup(){
  * 情報入力ポップアップに初期情報を入力する
  * start_timeがとってこれなかった時はfalseを返す
  * @param {Object} info user_id, end_time
- * @returns bool
+ * @returns promise(bool)
  */
 async function input_info_popup_init(info){
     let checker = false;
@@ -390,6 +391,47 @@ async function input_info_popup_init(info){
     return checker;
 }
 
+/**
+ * ログ表示をする
+ * @param {Object} info user_id
+ * @returns promise(bool)
+ */
+async function input_info_logs(info){
+    let checker = false;
+
+    await get_logs(info).then(function (value){
+        //console.log(value);
+        if (value) { checker = true; }
+
+        let table = document.getElementById("logs");
+        let init = `
+        <tr>
+            <th>日付</th>
+            <th>開始時間</th>
+            <th>終了時間</th>
+            <th>仕事内容</th>
+            <th>補足</th>
+        </tr>`;
+        for (let i = 0; i < value.length; i++){
+            let d = "<tr>";
+            //日付
+            d += "<td>" + value[i].start_time.split(' ')[0] +"</td>";
+            //開始時刻
+            d += "<td>" + value[i].start_time.split(' ')[1] +"</td>";
+            //終了時刻
+            d += "<td>" + value[i].end_time.split(' ')[1] +"</td>";
+            //仕事内容
+            d += "<td>" + value[i].job_info +"</td>";
+            //補足
+            d += "<td>" + value[i].others +"</td>";
+            d += "</tr>";
+            init += d;
+        }
+
+        table.innerHTML = init;
+    });
+    return checker;
+}
 //その他
 
 /**
