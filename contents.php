@@ -39,7 +39,7 @@ if(!isset($_SESSION["user_id"])) {
             </table>
             <button name="add" type="button" onclick="">追加</button>
             <br>
-            <button name="excel_output" type="button" onclick="">excel出力</button>
+            <button name="excel_output" type="button" onclick="excel_button()">excel出力</button>
         </div>
         <!-- 仕事内容入力ポップアップ -->
         <div id="job-info-modal" class="modal">
@@ -79,10 +79,11 @@ if(!isset($_SESSION["user_id"])) {
                 </div>
                 <div class="modal-body">
                     <p>Excelファイル入力してください</p>
-                    <form name="input_excel">
+                    <form name="input_excel" enctype="multipart/form-data">
                         <input type="file" name="excel" accept=".xlsx">
+                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
                     </form>
-                    <button name="complete" type="button" onclick="">完了</button>
+                    <button name="complete" type="button" onclick="excel_confirm_button()">完了</button>
                 </div>
             </div>
         </div>

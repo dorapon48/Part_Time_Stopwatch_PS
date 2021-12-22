@@ -75,7 +75,7 @@ function input_confirm_button(user_id){
  * show_input_excel_popupを呼び出す
  */
 function excel_button(){
-
+    show_input_excel_popup();
 }
 
 /**
@@ -84,7 +84,12 @@ function excel_button(){
  * post_change_excelを呼び出す
  */
 function excel_confirm_button(){
-
+    let form = document.forms.input_excel;
+    //let info = {user_id: 'test', file: null};
+    //info.file = $("*[name=excel]").val();
+    //console.log(info);
+    let info = new FormData(form)
+    post_change_excel(info);
 }
 
 //post, get類
@@ -217,10 +222,10 @@ async function add_part_times(info){
 
 /**
  * add_job_info_for_excel.phpにPOSTを投げる
- * @param {file} file excelファイル
+ * @param {Object} info user_id, file
  * @returns 
  */
-async function post_change_excel(file){
+async function post_change_excel(info){
     let checker = false;
 
     await $.ajax(
@@ -228,12 +233,14 @@ async function post_change_excel(file){
         type: 'POST',
         url: 'php/add_job_info_for_excel.php',
         async: false,
-        data:{
-            file: file
-        }
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 50000,
+        data: info
     }).done(function (data) {
         let result = JSON.parse(data);
-
+        console.log(result);
         if (result.error != 1){
             checker = true;
         }
