@@ -48,13 +48,8 @@ function input_confirm_button(user_id){
     let message = "";
 
     //入力確認
-    if (!form.start_time.value){ message += "開始時間が入力されていません\n"; }
-    if (!form.end_time.value){ message += "終了時間が入力されていません\n"; }
-    if (!form.job_info.value){ message += "仕事内容が入力されていません\n"; }
-    if (message != "") { checker = false; }
-    if (!checker){
-        window.alert(message);
-        return 0;   
+    if (!input_info_check(form)){
+        return 0;
     }
 
     //dateの入力はYYYY-MM-DD HH:MMなので，Tを変換
@@ -63,7 +58,8 @@ function input_confirm_button(user_id){
     info.job_info = form.job_info.value;
     info.others = form.others.value;
     info.user_id = user_id;
-
+    
+    //post
     add_part_times(info).then(function (value){
         if (value){
             close_input_info_popup();
@@ -267,4 +263,23 @@ function datetime_local_format(date){
     let s = date.split(' ');
     let s2 = s[1].split(':');
     return s[0] + 'T' + s2[0] + ':' + s2[1];
+}
+
+/**
+ * formの情報が入力されているかを返す
+ * 入力できていればtrue
+ * @param {document.form} form 
+ * @returns bool
+ */
+function input_info_check(form){
+    let message = "";
+
+    if (!form.start_time.value){ message += "開始時間が入力されていません\n"; }
+    if (!form.end_time.value){ message += "終了時間が入力されていません\n"; }
+    if (!form.job_info.value){ message += "仕事内容が入力されていません\n"; }
+    if (message != "") {
+        window.alert(message);
+        return false;
+    }
+    return true;
 }
