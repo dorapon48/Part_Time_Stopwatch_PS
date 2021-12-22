@@ -44,8 +44,6 @@ function end_button(user_id){
 function input_confirm_button(user_id){
     let form = document.forms.input_job_info;
     let info = {start_time: null, end_time: null, user_id: null, job_info: null, others: null};
-    let checker = true;
-    let message = "";
 
     //入力確認
     if (!input_info_check(form)){
@@ -246,6 +244,22 @@ function show_input_info_popup(){
  */
 function close_input_info_popup(){
     let target = document.getElementById('job-info-modal');
+    target.style.display = "none";
+}
+
+/**
+ * excel入力ポップアップを表示する
+ */
+function show_input_excel_popup(){
+    let target = document.getElementById('excel-modal');
+    target.style.display = "block";
+}
+
+/**
+ * excel入力ポップアップを閉じる
+ */
+function close_input_excel_popup(){
+    let target = document.getElementById('excel-modal');
     target.style.display = "none";
 }
 
