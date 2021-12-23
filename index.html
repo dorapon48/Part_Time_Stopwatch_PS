@@ -16,13 +16,15 @@ and open the template in the editor.
         <div id="login">
             <h1>ログインページ</h1>
             <form name="info">
-                <label>ユーザID</label>
-                <!--user_id-->
-                <input type="text" name="user_id">
-                <br>
-                <label>パスワード</label>
-                <!--password-->
-                <input type="password" name="password">
+                <div class="cp_iptxt">
+                    <label class="ef">ユーザID:</label>
+                    <!--user_id-->
+                    <input type="text" name="user_id">
+                    <br>
+                    <label class="ef">パスワード:</label>
+                    <!--password-->
+                    <input type="password" name="password">
+                </div>
             </form>
             <button type="button" onclick="login_button()">ログイン</button>
         </div>

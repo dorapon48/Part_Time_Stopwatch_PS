@@ -1,3 +1,10 @@
+body {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 720px;
+}
+
 .modal {
     display: none;
     position: fixed;
