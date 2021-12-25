@@ -419,13 +419,16 @@ async function input_info_logs(info){
 
         let table = document.getElementById("logs");
         let init = `
+        <thead>
         <tr>
             <th>日付</th>
             <th>開始時間</th>
             <th>終了時間</th>
-            <th>仕事内容</th>
-            <th>補足</th>
-        </tr>`;
+            <th id='set-width'>仕事内容</th>
+            <th id='set-width'>補足</th>
+        </tr>
+        </thead>
+        <tbody>`;
         for (let i = 0; i < value.length; i++){
             let d = "<tr>";
             //日付
@@ -435,13 +438,13 @@ async function input_info_logs(info){
             //終了時刻
             d += "<td>" + value[i].end_time.split(' ')[1] +"</td>";
             //仕事内容
-            d += "<td>" + value[i].job_info +"</td>";
+            d += "<td id='set-width'>" + value[i].job_info +"</td>";
             //補足
-            d += "<td>" + value[i].others +"</td>";
+            d += "<td id='set-width'>" + value[i].others +"</td>";
             d += "</tr>";
             init += d;
         }
-
+        init += "</tbody>";
         table.innerHTML = init;
     });
     return checker;

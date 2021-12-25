@@ -1,8 +1,26 @@
 body {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    width: 720px;
+    
+}
+
+#start-end-button button{
+    width: 50%;
+    height: 50%;
+    font-size: 80px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#set-width {
+    word-wrap: break-word;
+}
+
+caption {
+    caption-side: top;
+    font-size: 40px;
+    color: black;
 }
 
 .modal {
