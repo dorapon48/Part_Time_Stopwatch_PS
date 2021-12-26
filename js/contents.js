@@ -342,9 +342,9 @@ async function get_logs(info){
 function change_show_button(which){
     //console.log(document.getElementById('start-end-button'));
     if (which){
-        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" onclick=\"start_button('" + SESSION_user_id + "')\">スタート</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" class=\"btn btn-success btn-lg\" onclick=\"start_button('" + SESSION_user_id + "')\">スタート</button>";
     } else {
-        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button('" + SESSION_user_id + "')\">ストップ</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" class=\"btn btn-warning btn-lg\" onclick=\"end_button('" + SESSION_user_id + "')\">ストップ</button>";
     }
 }
 
@@ -353,32 +353,28 @@ function change_show_button(which){
  * 情報入力ポップアップを表示する
  */
 function show_input_info_popup(){
-    let target = document.getElementById('job-info-modal');
-    target.style.display = "block";
+    $('#job-info-modal').modal("show");
 }
 
 /**
  * 情報入力ポップアップを閉じる
  */
 function close_input_info_popup(){
-    let target = document.getElementById('job-info-modal');
-    target.style.display = "none";
+    $('#job-info-modal').modal("hide");
 }
 
 /**
  * excel入力ポップアップを表示する
  */
 function show_input_excel_popup(){
-    let target = document.getElementById('excel-modal');
-    target.style.display = "block";
+    $('#excel-modal').modal("show");
 }
 
 /**
  * excel入力ポップアップを閉じる
  */
 function close_input_excel_popup(){
-    let target = document.getElementById('excel-modal');
-    target.style.display = "none";
+    $('#excel-modal').modal("hide");
 }
 
 /**

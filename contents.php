@@ -52,48 +52,52 @@ if(!isset($_SESSION["user_id"])) {
                         <button name="excel_output" type="button" onclick="excel_button()">excel出力</button>
                     </div>
                     <!-- 仕事内容入力ポップアップ -->
-                    <div id="job-info-modal" class="modal">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3>仕事内容入力画面</h3>
-                            </div>
-                            <div class="modal-body">
-                                <span>日付 : </span>
-                                <span>
-                                    <?php $date = new DateTime();
-                                    echo $date->format('Y/m/d'); ?>
-                                </span>
-                                <form name="input_job_info">
-                                    <div class="titles">
-                                        <span id="start-title">開始時間</span>
-                                        <span id="end-title">終了時間</span>
-                                    </div>
-                                    <div class="input-times">
-                                        <input type="datetime-local" name="start_time" id="start-time">
-                                        <input type="datetime-local" name="end_time" id="end-time">
-                                    </div>
-                                    <p>仕事内容</p>
-                                    <input type="text" name="job_info">
-                                    <p>補足</p>
-                                    <input type="text" name="others">
-                                </form>
-                                <button name="complete" type="button" onclick="input_confirm_button('<?php echo $_SESSION['user_id'] ?>')">完了</button>
+                    <div class="modal fade" id="job-info-modal" tabindex="-1" aria-labelledby="job-info-modal-label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>仕事内容入力画面</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <span>日付 : </span>
+                                    <span>
+                                        <?php $date = new DateTime();
+                                        echo $date->format('Y/m/d'); ?>
+                                    </span>
+                                    <form name="input_job_info">
+                                        <div class="titles">
+                                            <span id="start-title">開始時間</span>
+                                            <span id="end-title">終了時間</span>
+                                        </div>
+                                        <div class="input-times">
+                                            <input type="datetime-local" name="start_time" id="start-time">
+                                            <input type="datetime-local" name="end_time" id="end-time">
+                                        </div>
+                                        <p>仕事内容</p>
+                                        <input type="text" name="job_info">
+                                        <p>補足</p>
+                                        <input type="text" name="others">
+                                    </form>
+                                    <button name="complete" type="button" data-bs-dismiss="" onclick="input_confirm_button('<?php echo $_SESSION['user_id'] ?>')">完了</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Excelファイル入力ポップアップ -->
-                    <div id="excel-modal" class="modal">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3>Excelファイル入力画面</h3>
-                            </div>
-                            <div class="modal-body">
-                                <p>Excelファイル入力してください</p>
-                                <form name="input_excel" enctype="multipart/form-data">
-                                    <input type="file" name="excel" accept=".xlsx">
-                                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
-                                </form>
-                                <button name="complete" type="button" onclick="excel_confirm_button()">完了</button>
+                    <div class="modal fade" id="excel-modal" tabindex="-1" aria-labelledby="excel-modal-label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Excelファイル入力画面</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Excelファイル入力してください</p>
+                                    <form name="input_excel" enctype="multipart/form-data">
+                                        <input type="file" name="excel" accept=".xlsx">
+                                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
+                                    </form>
+                                    <button name="complete" type="button" onclick="excel_confirm_button()">完了</button>
+                                </div>
                             </div>
                         </div>
                     </div>
