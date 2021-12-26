@@ -33,18 +33,20 @@ if(!isset($_SESSION["user_id"])) {
                         <div id="start-end-button">
                             <button name="start" type="button" class="btn btn-success btn-lg" onclick="start_button('<?php echo $_SESSION['user_id'] ?>')">スタート</button>
                         </div>
-                        <table id="logs" class="table table-striped table-responsive">
-                            <thead>
-                                <h1>仕事ログ</h1>
-                                <tr>
-                                    <th>日付</th>
-                                    <th>開始時間</th>
-                                    <th>終了時間</th>
-                                    <th>仕事内容</th>
-                                    <th>補足</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="logs" class="table table-striped">
+                                <thead>
+                                    <h1>仕事ログ</h1>
+                                    <tr>
+                                        <th>日付</th>
+                                        <th>開始時間</th>
+                                        <th>終了時間</th>
+                                        <th>仕事内容</th>
+                                        <th>補足</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                         <button name="add" type="button" onclick="">追加</button>
                         <br>
                         <button name="excel_output" type="button" onclick="excel_button()">excel出力</button>

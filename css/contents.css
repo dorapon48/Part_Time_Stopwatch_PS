@@ -1,20 +1,8 @@
-body {
-    
-}
 
 #start-end-button button{
-    width: 50%;
+    width: 100%;
     height: 50%;
     font-size: 80px;
-}
-
-table {
-    table-layout: fixed;
-    width: 100%;
-}
-
-#set-width {
-    word-wrap: break-word;
 }
 
 caption {
