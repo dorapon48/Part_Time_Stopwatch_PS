@@ -53,7 +53,7 @@ if(!isset($_SESSION["user_id"])) {
                     </div>
                     <!-- 仕事内容入力ポップアップ -->
                     <div class="modal fade" id="job-info-modal" tabindex="-1" aria-labelledby="job-info-modal-label" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h3>仕事内容入力画面</h3>
@@ -65,27 +65,37 @@ if(!isset($_SESSION["user_id"])) {
                                         echo $date->format('Y/m/d'); ?>
                                     </span>
                                     <form name="input_job_info">
-                                        <div class="titles">
-                                            <span id="start-title">開始時間</span>
-                                            <span id="end-title">終了時間</span>
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <label class="form-label">開始時間:</label>
+                                                <input type="datetime-local" name="start_time" id="start-time" class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">終了時間:</label>
+                                                <input type="datetime-local" name="end_time" id="end-time" class="form-control">
+                                            </div>
                                         </div>
-                                        <div class="input-times">
-                                            <input type="datetime-local" name="start_time" id="start-time">
-                                            <input type="datetime-local" name="end_time" id="end-time">
+                                        <div class="row mb-4">
+                                            <div class="col-mb-12">
+                                                <label class="form-label">仕事内容:</label>
+                                                <input type="text" name="job_info" class="form-control">
+                                            </div>
                                         </div>
-                                        <p>仕事内容</p>
-                                        <input type="text" name="job_info">
-                                        <p>補足</p>
-                                        <input type="text" name="others">
+                                        <div class="row mb-4">
+                                            <div class="col-mb-12">
+                                                <label class="form-label">補足:</label>
+                                                <input type="text" name="others" class="form-control">
+                                            </div>
+                                        </div>
                                     </form>
-                                    <button name="complete" type="button" data-bs-dismiss="" onclick="input_confirm_button('<?php echo $_SESSION['user_id'] ?>')">完了</button>
+                                    <button name="complete" type="button" class="btn btn-success" onclick="input_confirm_button('<?php echo $_SESSION['user_id'] ?>')">完了</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Excelファイル入力ポップアップ -->
                     <div class="modal fade" id="excel-modal" tabindex="-1" aria-labelledby="excel-modal-label" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h3>Excelファイル入力画面</h3>
