@@ -342,9 +342,9 @@ async function get_logs(info){
 function change_show_button(which){
     //console.log(document.getElementById('start-end-button'));
     if (which){
-        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" onclick=\"start_button('" + SESSION_user_id + "')\">スタート</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" class=\"btn btn-success btn-lg\" onclick=\"start_button('" + SESSION_user_id + "')\">計測スタート</button>";
     } else {
-        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" onclick=\"end_button('" + SESSION_user_id + "')\">ストップ</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" class=\"btn btn-warning btn-lg\" onclick=\"end_button('" + SESSION_user_id + "')\">計測ストップ</button>";
     }
 }
 
@@ -353,32 +353,28 @@ function change_show_button(which){
  * 情報入力ポップアップを表示する
  */
 function show_input_info_popup(){
-    let target = document.getElementById('job-info-modal');
-    target.style.display = "block";
+    $('#job-info-modal').modal("show");
 }
 
 /**
  * 情報入力ポップアップを閉じる
  */
 function close_input_info_popup(){
-    let target = document.getElementById('job-info-modal');
-    target.style.display = "none";
+    $('#job-info-modal').modal("hide");
 }
 
 /**
  * excel入力ポップアップを表示する
  */
 function show_input_excel_popup(){
-    let target = document.getElementById('excel-modal');
-    target.style.display = "block";
+    $('#excel-modal').modal("show");
 }
 
 /**
  * excel入力ポップアップを閉じる
  */
 function close_input_excel_popup(){
-    let target = document.getElementById('excel-modal');
-    target.style.display = "none";
+    $('#excel-modal').modal("hide");
 }
 
 /**
@@ -419,29 +415,35 @@ async function input_info_logs(info){
 
         let table = document.getElementById("logs");
         let init = `
+        <thead>
         <tr>
-            <th>日付</th>
-            <th>開始時間</th>
-            <th>終了時間</th>
-            <th>仕事内容</th>
-            <th>補足</th>
-        </tr>`;
+            <th style="width: 10%" class="text-center">日付</th>
+            <th style="width: 7%" class="text-center">開始時間</th>
+            <th style="width: 7%" class="text-center">終了時間</th>
+            <th style="width: 43%" class="text-center">仕事内容</th>
+            <th style="width: 43%" class="text-center">補足</th>
+        </tr>
+        </thead>
+        <tbody>`;
         for (let i = 0; i < value.length; i++){
             let d = "<tr>";
+            //表示をHH:MMにするのに使う
+            let s_time = value[i].start_time.split(' ')[1].split(':');
+            let e_time = value[i].end_time.split(' ')[1].split(':');
             //日付
-            d += "<td>" + value[i].start_time.split(' ')[0] +"</td>";
+            d += "<td class='text-center'>" + value[i].start_time.split(' ')[0] +"</td>";
             //開始時刻
-            d += "<td>" + value[i].start_time.split(' ')[1] +"</td>";
+            d += "<td class='text-center'>" + s_time[0] + ":" + s_time[1] +"</td>";
             //終了時刻
-            d += "<td>" + value[i].end_time.split(' ')[1] +"</td>";
+            d += "<td class='text-center'>" + e_time[0] + ":" + e_time[1] +"</td>";
             //仕事内容
-            d += "<td>" + value[i].job_info +"</td>";
+            d += "<td id='set-width'>" + value[i].job_info +"</td>";
             //補足
-            d += "<td>" + value[i].others +"</td>";
+            d += "<td id='set-width'>" + value[i].others +"</td>";
             d += "</tr>";
             init += d;
         }
-
+        init += "</tbody>";
         table.innerHTML = init;
     });
     return checker;

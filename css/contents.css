@@ -1,3 +1,49 @@
+
+label {
+    font-size: 20px;
+}
+
+#start-end-button button{
+    width: 100%;
+    height: 50%;
+    font-size: 80px;
+}
+
+#logs {
+    margin-bottom: 5px;
+}
+
+#add-log-button {
+    font-weight: bold;
+    width: 80%;
+    height: 10%;
+    margin-left: 10%;
+}
+
+#add-excel-button {
+    width: 15%;
+    height: 30%;
+    font-size: 28px;
+    margin-top: 5px;
+    margin-left: 85%;
+    margin-bottom: 10px;
+}
+
+#job-info-modal span {
+    font-size: 28px;
+}
+
+#job-info-modal button, #excel-modal button {
+    font-size: 20px;
+    width: 30%;
+    margin-left: 70%;
+}
+
+#excel-modal form {
+    margin-bottom: 5px;
+}
+
+/*
 .modal {
     display: none;
     position: fixed;
@@ -16,3 +62,4 @@
     width: 50%;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
 }
+*/
