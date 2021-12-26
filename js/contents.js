@@ -119,6 +119,14 @@ function excel_confirm_button(){
     });
 }
 
+/**
+ * 追加ボタンを押したときに呼び出される．
+ * show_input_info_popupを呼び出す
+ */
+function add_button(){
+    show_input_info_popup();
+}
+
 //post, get類
 
 /**

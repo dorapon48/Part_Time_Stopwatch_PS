@@ -47,7 +47,7 @@ if(!isset($_SESSION["user_id"])) {
                                 </thead>
                             </table>
                         </div>
-                        <button name="add" type="button" class="btn btn-outline-success btn-sl" id="add-log-button" onclick="">追加</button>
+                        <button name="add" type="button" class="btn btn-outline-success btn-sl" id="add-log-button" onclick="add_button()">追加</button>
                         <br>
                         <button name="excel_output" class="btn btn-success btn-lg" id="add-excel-button" type="button" onclick="excel_button()">excel出力</button>
                     </div>
