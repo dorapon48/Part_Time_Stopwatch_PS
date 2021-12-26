@@ -31,7 +31,7 @@ if(!isset($_SESSION["user_id"])) {
                     <h1>記録画面</h1>
                     <div class="main">
                         <div id="start-end-button">
-                            <button name="start" type="button" class="btn btn-success btn-lg" onclick="start_button('<?php echo $_SESSION['user_id'] ?>')">スタート</button>
+                            <button name="start" type="button" class="btn btn-success btn-lg" onclick="start_button('<?php echo $_SESSION['user_id'] ?>')">計測スタート</button>
                         </div>
                         <div class="table-responsive">
                             <table id="logs" class="table table-striped">
@@ -101,12 +101,16 @@ if(!isset($_SESSION["user_id"])) {
                                     <h3>Excelファイル入力画面</h3>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Excelファイル入力してください</p>
                                     <form name="input_excel" enctype="multipart/form-data">
-                                        <input type="file" name="excel" accept=".xlsx">
-                                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
+                                        <div class="row mb-12">
+                                            <div class="col-md-12">
+                                                <label>Excelファイルを入力してください</label>
+                                                <input type="file" name="excel" class="form-control" accept=".xlsx">
+                                                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
+                                            </div>
+                                        </div>
                                     </form>
-                                    <button name="complete" type="button" onclick="excel_confirm_button()">完了</button>
+                                    <button name="complete" type="button" class="btn btn-success" onclick="excel_confirm_button()">完了</button>
                                 </div>
                             </div>
                         </div>

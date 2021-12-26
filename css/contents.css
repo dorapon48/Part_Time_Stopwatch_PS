@@ -26,16 +26,21 @@ label {
     font-size: 28px;
     margin-top: 5px;
     margin-left: 85%;
+    margin-bottom: 10px;
 }
 
 #job-info-modal span {
     font-size: 28px;
 }
 
-#job-info-modal button {
+#job-info-modal button, #excel-modal button {
     font-size: 20px;
     width: 30%;
     margin-left: 70%;
+}
+
+#excel-modal form {
+    margin-bottom: 5px;
 }
 
 /*

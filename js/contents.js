@@ -342,9 +342,9 @@ async function get_logs(info){
 function change_show_button(which){
     //console.log(document.getElementById('start-end-button'));
     if (which){
-        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" class=\"btn btn-success btn-lg\" onclick=\"start_button('" + SESSION_user_id + "')\">スタート</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"start\" type=\"button\" class=\"btn btn-success btn-lg\" onclick=\"start_button('" + SESSION_user_id + "')\">計測スタート</button>";
     } else {
-        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" class=\"btn btn-warning btn-lg\" onclick=\"end_button('" + SESSION_user_id + "')\">ストップ</button>";
+        document.getElementById('start-end-button').innerHTML = "<button name=\"end\" type=\"button\" class=\"btn btn-warning btn-lg\" onclick=\"end_button('" + SESSION_user_id + "')\">計測ストップ</button>";
     }
 }
 
