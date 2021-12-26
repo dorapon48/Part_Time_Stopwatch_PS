@@ -5,11 +5,25 @@
     font-size: 80px;
 }
 
-caption {
-    caption-side: top;
-    font-size: 40px;
-    color: black;
+#logs {
+    margin-bottom: 5px;
 }
+
+#add-log-button {
+    font-weight: bold;
+    width: 80%;
+    height: 10%;
+    margin-left: 10%;
+}
+
+#add-excel-button {
+    width: 15%;
+    height: 30%;
+    font-size: 28px;
+    margin-top: 5px;
+    margin-left: 85%;
+}
+
 /*
 .modal {
     display: none;

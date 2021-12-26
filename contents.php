@@ -47,9 +47,9 @@ if(!isset($_SESSION["user_id"])) {
                                 </thead>
                             </table>
                         </div>
-                        <button name="add" type="button" onclick="">追加</button>
+                        <button name="add" type="button" class="btn btn-outline-success btn-sl" id="add-log-button" onclick="">追加</button>
                         <br>
-                        <button name="excel_output" type="button" onclick="excel_button()">excel出力</button>
+                        <button name="excel_output" class="btn btn-success btn-lg" id="add-excel-button" type="button" onclick="excel_button()">excel出力</button>
                     </div>
                     <!-- 仕事内容入力ポップアップ -->
                     <div class="modal fade" id="job-info-modal" tabindex="-1" aria-labelledby="job-info-modal-label" aria-hidden="true">
