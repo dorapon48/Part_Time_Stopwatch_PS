@@ -78,13 +78,13 @@ if(!isset($_SESSION["user_id"])) {
                                         <div class="row mb-4">
                                             <div class="col-mb-12">
                                                 <label class="form-label">仕事内容:</label>
-                                                <input type="text" name="job_info" class="form-control">
+                                                <input type="text" name="job_info" id="job-info" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row mb-4">
                                             <div class="col-mb-12">
                                                 <label class="form-label">補足:</label>
-                                                <input type="text" name="others" class="form-control">
+                                                <input type="text" name="others" id="others" class="form-control">
                                             </div>
                                         </div>
                                     </form>

@@ -42,6 +42,7 @@ function end_button(user_id){
     const time = new Date();
     let info = {user_id: user_id, end_time: time_format(time)};
 
+    set_info_popup_white();
     input_info_popup_init(info).then(function (value){
         if(value){
             show_input_info_popup();
@@ -124,6 +125,7 @@ function excel_confirm_button(){
  * show_input_info_popupを呼び出す
  */
 function add_button(){
+    set_info_popup_white();
     show_input_info_popup();
 }
 
@@ -407,6 +409,16 @@ async function input_info_popup_init(info){
         }
     });
     return checker;
+}
+
+/**
+ * 情報入力ポップアップを何も入力されていない画面にする
+ */
+function set_info_popup_white(){
+    document.getElementById('start-time').value = "";
+    document.getElementById('end-time').value = "";
+    document.getElementById('job-info').value = "";
+    document.getElementById('others').value = "";
 }
 
 /**
